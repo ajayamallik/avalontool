@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.avalon.ftp</groupId>
+		<artifactId>ftp</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>ftp-web</artifactId>
+	<packaging>war</packaging>
+	<name>ftp-web</name>
+	<description>ftp-web</description>
+
+	<properties>
+		<servlet-version>2.5</servlet-version>
+		<jstl-version>1.2</jstl-version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.avalon.ftp</groupId>
+			<artifactId>ftp-beans</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.avalon.ftp</groupId>
+			<artifactId>ftp-dataaccess</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.avalon.ftp</groupId>
+		<artifactId>ftp-services</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl-version}</version>
+		</dependency>
+
+	</dependencies>
+	
+	<build>
+		<finalName>ftp</finalName>
+	</build>
+</project>

@@ -1,0 +1,1 @@
+<% response.sendRedirect("/ftp/getLogin"); %>

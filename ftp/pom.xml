@@ -1,0 +1,242 @@
+	<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.avalon.ftp</groupId>
+  <artifactId>ftp</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>FTP</name>
+  <description>FTP Avalon Tool</description>
+  <modules>
+  	<module>ftp-beans</module>
+  	<module>ftp-dataaccess</module>  	
+  	<module>ftp-services</module>
+  	<module>ftp-web</module>
+  </modules>  
+  <properties>
+		<spring-version>4.0.5.RELEASE  </spring-version>
+		<!-- <org.springframework-version>4.0.5.RELEASE</org.springframework-version> -->
+		<org.springframework.security.version>3.2.3.RELEASE</org.springframework.security.version>
+		<hibernate-version>4.1.7.Final</hibernate-version>
+		<hibernate-validator-version>5.1.1.Final</hibernate-validator-version>
+		<log4j-version>1.2.16</log4j-version>
+	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+			<!-- Spring Dependencies -->
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring-version}</version>
+			</dependency>
+			<!-- <dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>   -->
+ 		<!-- newly added for spring security -->
+			<dependency>
+    			<groupId>org.springframework.security</groupId>
+  			    <artifactId>spring-security-core</artifactId>
+    			<version>${org.springframework.security.version}</version>
+			</dependency>
+			<dependency>
+    			<groupId>org.springframework.security</groupId>
+			    <artifactId>spring-security-web</artifactId>
+			    <version>${org.springframework.security.version}</version>
+			</dependency>
+			<dependency>
+   				 <groupId>org.springframework.security</groupId>
+   				 <artifactId>spring-security-config</artifactId>
+    			 <version>${org.springframework.security.version}</version>
+    			 <scope>runtime</scope>
+			</dependency>
+			<dependency>
+    			<groupId>org.springframework.security</groupId>
+    			<artifactId>spring-security-openid</artifactId>
+    			<version>${org.springframework.security.version}</version>
+			</dependency>	
+			<dependency>
+    			<groupId>org.springframework.security</groupId>
+    			<artifactId>spring-security-acl</artifactId>
+    			<version>${org.springframework.security.version}</version>
+			</dependency>
+		
+			<!-- Hibernate Dependencies -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hibernate-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate-validator-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j-version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<!-- Spring Dependencies	-->	
+			
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<!-- It is for userDetails interface -->
+		<dependency>
+        	<groupId>org.springframework.security</groupId>
+        	<artifactId>spring-security-core</artifactId>
+        	<!--  <version>3.2.3.RELEASE</version> -->
+    	</dependency>	
+    	<dependency>
+        	<groupId>org.springframework.security</groupId>
+        	<artifactId>spring-security-config</artifactId>
+        	<!--  <version>3.2.3.RELEASE</version> -->
+    	</dependency> 
+    	<dependency>
+        	<groupId>org.springframework.security</groupId>
+        	<artifactId>spring-security-web</artifactId>
+        	<!--  <version>3.2.3.RELEASE</version> -->
+    	</dependency>	
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+
+    	<dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-beans</artifactId>
+        	<version>${spring-version}</version>
+    	</dependency>
+    	<dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-context</artifactId>
+        	<version>${spring-version}</version> 
+    	</dependency>
+    	<dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-expression</artifactId>
+        	<version>${spring-version}</version> 
+    	</dependency>
+    	<dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-jdbc</artifactId>
+        	<version>${spring-version}</version> 
+    	</dependency> 
+
+		<dependency>
+  			<groupId>org.springframework</groupId>
+  			<artifactId>spring-tx</artifactId>
+  			<version>${spring-version}</version>
+		</dependency>
+    	<!-- <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-servlet</artifactId>
+        	<version>${spring-version}</version>
+    	</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency> -->
+		<!-- Hibernate Dependencies -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		
+		<!--  For JSCH conectivity -->
+		<dependency>
+  			<groupId>com.jcraft</groupId>
+  			<artifactId>jsch</artifactId>
+  			<version>0.1.51</version>
+		</dependency>
+		
+		<!--  for File Upload -->
+		<dependency>
+    		<groupId>commons-fileupload</groupId>
+    		<artifactId>commons-fileupload</artifactId>
+    		<version>1.2.2</version>
+		</dependency>
+
+		<!-- Apache Commons IO -->
+    	<dependency>
+        	<groupId>org.apache.commons</groupId>
+        	<artifactId>commons-io</artifactId>
+        	<version>1.3.2</version>
+    	</dependency>
+    	
+    	<!--  JSON  -->
+    	<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.7</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>5.2.0</version>
+		</dependency>
+		
+	</dependencies>
+</project>
