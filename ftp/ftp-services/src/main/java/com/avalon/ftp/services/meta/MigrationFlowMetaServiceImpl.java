@@ -30,7 +30,6 @@ public class MigrationFlowMetaServiceImpl implements MigrationFlowMetaService {
 		return migrationFlowMetaRepository.getMigrationFlows();
 	}
 
-	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<MigrationTypeEntity> getMigrationTypeValues() {
 		// TODO Auto-generated method stub

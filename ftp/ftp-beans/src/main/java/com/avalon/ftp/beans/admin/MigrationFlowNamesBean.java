@@ -2,12 +2,15 @@ package com.avalon.ftp.beans.admin;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class MigrationFlowNamesBean implements Serializable {
 
 	private static final long serialVersionUID = 3908127745999139631L;
 
 	private int migId;
 	/*private String migrationFlowName;*/
+	@NotEmpty
 	private String migrationflowname; 
 
 	public int getMigId() {

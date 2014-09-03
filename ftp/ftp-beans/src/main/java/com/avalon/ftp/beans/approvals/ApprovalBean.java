@@ -2,6 +2,8 @@ package com.avalon.ftp.beans.approvals;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class ApprovalBean implements Serializable {
 
 	/**
@@ -10,19 +12,19 @@ public class ApprovalBean implements Serializable {
 	private static final long serialVersionUID = -4270812295592271947L;
 
 	private int approvalid;
-
+	@NotEmpty
 	private String createdby;
-
-	private String migrationflow;
-
+	@NotEmpty
+	private String migrationflow;	
+	@NotEmpty
 	private String createdon;
-
+	@NotEmpty
 	private String ownerr;
-
+	@NotEmpty
 	private String statuss;
-
+	@NotEmpty
 	private String groupp;
-
+	@NotEmpty
 	private String migrationtype;
 
 	private String userid;
@@ -30,12 +32,16 @@ public class ApprovalBean implements Serializable {
 	private String approvalstatus;
 
 	private String modified_time;
-
+	@NotEmpty
 	private String requestno;
 	
-	private String instanceids;
-	
-	private String requestType;
+	public String getInstanceids() {
+		return instanceids;
+	}
+
+	public void setInstanceids(String instanceids) {
+		this.instanceids = instanceids;
+	}
 
 	public String getRequestType() {
 		return requestType;
@@ -45,13 +51,11 @@ public class ApprovalBean implements Serializable {
 		this.requestType = requestType;
 	}
 
-	public String getInstanceids() {
-		return instanceids;
-	}
-
-	public void setInstanceids(String instanceids) {
-		this.instanceids = instanceids;
-	}
+	@NotEmpty
+	private String instanceids;
+	
+	@NotEmpty
+	private String requestType;
 
 	public int getApprovalid() {
 		return approvalid;

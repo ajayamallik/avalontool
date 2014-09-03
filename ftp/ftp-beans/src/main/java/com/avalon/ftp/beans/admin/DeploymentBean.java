@@ -2,25 +2,28 @@ package com.avalon.ftp.beans.admin;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class DeploymentBean implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3311905901031283089L;
-
+	
+	
 	private long environmentid;
-
+	@NotEmpty
 	private String instancename;
-
+	@NotEmpty
 	private String port;
-
+	@NotEmpty
 	private String host;
-
+	@NotEmpty
 	private String sid;
-
+	@NotEmpty
 	private String status;
-
+	@NotEmpty
 	private String instanceid;
 
 	public long getEnvironmentid() {

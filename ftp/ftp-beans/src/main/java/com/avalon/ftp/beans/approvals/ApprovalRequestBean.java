@@ -2,189 +2,164 @@ package com.avalon.ftp.beans.approvals;
 
 import java.io.Serializable;
 
-import org.springframework.web.multipart.MultipartFile;
+import org.hibernate.validator.constraints.NotEmpty;
 
-public class ApprovalRequestBean implements Serializable{
+public class ApprovalRequestBean implements Serializable {
+
+	private static final long serialVersionUID = 6801732101783995632L;
+
 	/*
-	  Bean for ApprovalRequest Entity. Using to get, update pending approvals
+	 * Bean for ApprovalRequest Entity. Using to get, update pending approvals
 	 */
-		
-		public String getId() {
-			return id;
-		}
 
-		public void setId(String id) {
-			this.id = id;
-		}
+	private String id;
+	@NotEmpty
+	private String objecttype;
+	@NotEmpty
+	private String filename;
+	@NotEmpty
+	private String appshortname;
+	@NotEmpty
+	private String path;
+	@NotEmpty
+	private int approvalid;
+	@NotEmpty
+	private String status;
+	@NotEmpty
+	private String lobcode;
+	@NotEmpty
+	private String language;
+	@NotEmpty
+	private String territory;
+	@NotEmpty
+	private String execasapps;
+	@NotEmpty
+	private String targetpath;
+	@NotEmpty
+	private String businessevent;
+	@NotEmpty
+	private String cntrlfilename;
+	public String getRequesttype() {
+		return requesttype;
+	}
 
-		public String getObjecttype() {
-			return objecttype;
-		}
+	public void setRequesttype(String requesttype) {
+		this.requesttype = requesttype;
+	}
 
-		public void setObjecttype(String objecttype) {
-			this.objecttype = objecttype;
-		}
+	@NotEmpty
+	private String requesttype;
 
-		public String getFilename() {
-			return filename;
-		}
+	public String getId() {
+		return id;
+	}
 
-		public void setFilename(String filename) {
-			this.filename = filename;
-		}
+	public void setId(String id) {
+		this.id = id;
+	}
 
-		public String getAppshortname() {
-			return appshortname;
-		}
+	public String getObjecttype() {
+		return objecttype;
+	}
 
-		public void setAppshortname(String appshortname) {
-			this.appshortname = appshortname;
-		}
+	public void setObjecttype(String objecttype) {
+		this.objecttype = objecttype;
+	}
 
-		
-		public String getPath() {
-			return path;
-		}
+	public String getFilename() {
+		return filename;
+	}
 
-		public void setPath(String path) {
-			this.path = path;
-		}
-		
-		
-		public int getApprovalid() {
-			return approvalid;
-		}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 
-		public void setApprovalid(int approvalid) {
-			this.approvalid = approvalid;
-		}
-		
-		
-		public String getStatus() {
-			return status;
-		}
+	public String getAppshortname() {
+		return appshortname;
+	}
 
-		public void setStatus(String status) {
-			this.status = status;
-		}
+	public void setAppshortname(String appshortname) {
+		this.appshortname = appshortname;
+	}
 
+	public String getPath() {
+		return path;
+	}
 
+	public void setPath(String path) {
+		this.path = path;
+	}
 
+	public int getApprovalid() {
+		return approvalid;
+	}
 
+	public void setApprovalid(int approvalid) {
+		this.approvalid = approvalid;
+	}
 
+	public String getStatus() {
+		return status;
+	}
 
-	    private String id;
-		
-	
-		private String objecttype;
-		
-	
-		private String filename;
-		
-	
-		private String appshortname;
-		
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
+	public String getLobcode() {
+		return lobcode;
+	}
 
-		private String path;
+	public void setLobcode(String lobcode) {
+		this.lobcode = lobcode;
+	}
 
+	public String getLanguage() {
+		return language;
+	}
 
-		private int approvalid;	
+	public void setLanguage(String language) {
+		this.language = language;
+	}
 
+	public String getTerritory() {
+		return territory;
+	}
 
+	public void setTerritory(String territory) {
+		this.territory = territory;
+	}
 
-		private String status;
-		
-		
+	public String getExecasapps() {
+		return execasapps;
+	}
 
-		private String lobcode;
-		
-		private String language;
-		
-	
-		private String territory;
-		
+	public void setExecasapps(String execasapps) {
+		this.execasapps = execasapps;
+	}
 
-		private String execasapps;
-		
+	public String getTargetpath() {
+		return targetpath;
+	}
 
-		private String targetpath;
-		
+	public void setTargetpath(String targetpath) {
+		this.targetpath = targetpath;
+	}
 
-		private String businessevent;
-		
+	public String getBusinessevent() {
+		return businessevent;
+	}
 
-		private String cntrlfilename;
-		
-		private String requesttype;
-		
-		
-		
-		public String getRequesttype() {
-			return requesttype;
-		}
+	public void setBusinessevent(String businessevent) {
+		this.businessevent = businessevent;
+	}
 
-		public void setRequesttype(String requesttype) {
-			this.requesttype = requesttype;
-		}
+	public String getCntrlfilename() {
+		return cntrlfilename;
+	}
 
-		public String getLobcode() {
-			return lobcode;
-		}
+	public void setCntrlfilename(String cntrlfilename) {
+		this.cntrlfilename = cntrlfilename;
+	}
 
-		public void setLobcode(String lobcode) {
-			this.lobcode = lobcode;
-		}
-
-		public String getLanguage() {
-			return language;
-		}
-
-		public void setLanguage(String language) {
-			this.language = language;
-		}
-
-		public String getTerritory() {
-			return territory;
-		}
-
-		public void setTerritory(String territory) {
-			this.territory = territory;
-		}
-
-		public String getExecasapps() {
-			return execasapps;
-		}
-
-		public void setExecasapps(String execasapps) {
-			this.execasapps = execasapps;
-		}
-
-		public String getTargetpath() {
-			return targetpath;
-		}
-
-		public void setTargetpath(String targetpath) {
-			this.targetpath = targetpath;
-		}
-
-		public String getBusinessevent() {
-			return businessevent;
-		}
-
-		public void setBusinessevent(String businessevent) {
-			this.businessevent = businessevent;
-		}
-
-		public String getCntrlfilename() {
-			return cntrlfilename;
-		}
-
-		public void setCntrlfilename(String cntrlfilename) {
-			this.cntrlfilename = cntrlfilename;
-		}
-
-
-
-		
 }

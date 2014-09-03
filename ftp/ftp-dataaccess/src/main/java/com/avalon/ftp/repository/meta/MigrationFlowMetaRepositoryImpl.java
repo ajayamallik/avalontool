@@ -35,7 +35,6 @@ public class MigrationFlowMetaRepositoryImpl implements
 
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.REQUIRED)
-	@Override
 	public List<MigrationTypeEntity> getMigrationTypeValues() {
 		// TODO Auto-generated method stub
 		logger.info("@MigrationFlowMetaRepositoryImpl.. getMigrationTypeValues()...!!");

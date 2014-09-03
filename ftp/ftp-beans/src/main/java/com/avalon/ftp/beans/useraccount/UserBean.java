@@ -1,9 +1,44 @@
 package com.avalon.ftp.beans.useraccount;
 
+import java.io.Serializable;
+
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.avalon.ftp.entities.useraccount.Role;
 
+public class UserBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2553866372340132355L;
 
-public class UserBean {
+	private int userid;
+
+	private int status;
+	@NotBlank/*(message="UserName requires...!!")*/
+	private String username;
+	@NotBlank/*(message="Password may not be empty..!!")*/
+	private String userpass;
+	private String useridd;
+	private int role_id;
+//	@NotBlank(message="please select one value..!!!")
+	private String type;
+	/*@NotBlank*//*(message="empid requires...!!")*/
+	@NotNull
+	private Integer empid;
+	@NotBlank/*(message="firstname requires...!!")*/
+	private String firstname;
+	@NotBlank/*(message="lastname requires...!!")*/
+	private String lastname;
+	@NotEmpty
+	@Email
+	private String email;
+	/*@NotBlank*/
+	private Role role;
 
 
 	public int getUserid() {
@@ -102,33 +137,8 @@ public class UserBean {
 		this.role = role;
 	}
 
-	private int userid;
-	
-	private int status;
-
-	private String username;
-	
-	private String userpass;
-	
-	private String useridd;
-
-	 int role_id;
-
-	private String type;
-	
-	private Integer empid;
-
-	private String firstname;	
-
-
-	private String lastname;
-	
-	private String email;
-
-	private Role role;
-	
 	@Override
-    public String toString() {
-        return "type"; 
+	public String toString() {
+		return "type";
 	}
 }

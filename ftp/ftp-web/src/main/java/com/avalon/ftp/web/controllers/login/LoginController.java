@@ -50,7 +50,14 @@ public class LoginController {
 		logger.info("The entered credentials::"+loginBean.getUsername()+"..."+loginBean.getPassword());
 		logger.info("@LoginController.getHomePage()::"
 				+ loginService.verifyUser(loginBean));
+		//Merged by mallik
+		//done by murali
+		//3-SEP-2014
+		if(result.hasErrors()){
+			return "Login";
+		}else{
 		return loginService.verifyUser(loginBean) ? "Home" : "Error";
+		}
 	}
 	
 	@RequestMapping(value = "/getErrorLogin", method = RequestMethod.GET)

@@ -2,42 +2,46 @@ package com.avalon.ftp.beans.admin;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class MigrationFlowBean implements Serializable {
 
 	private static final long serialVersionUID = 3998672430969673737L;
 
-	/*private int migrateid;*/
+	/* private int migrateid; */
+
 	private long migrateid;
-
+	@NotEmpty(message="Instance id is required")
 	private String instanceid;
-
+	@NotEmpty(message="enter sequence name")
 	private String sequence;
-
+	@NotEmpty(message="enter approval request ")
 	private String appreq;
 
-	/*private String migrationFlowName;*/
-	 private String migrationflowname; 
-
+	/* private String migrationFlowName; */
+	@NotEmpty(message="select atleast one value..!!")
+	private String migrationflowname;
+	@NotEmpty(message="enter migrationflow name")
 	private String migrationflow;
+	private String userid;
+	private String lastupdatetime;
 
-	/*private MigrationFlowNamesBean  migrationFlowNamesBean;
+	/*
+	 * private MigrationFlowNamesBean migrationFlowNamesBean;
+	 * 
+	 * public MigrationFlowNamesBean getMigrationFlowNamesBean() { return
+	 * migrationFlowNamesBean; }
+	 * 
+	 * public void setMigrationFlowNamesBean( MigrationFlowNamesBean
+	 * migrationFlowNamesBean) { this.migrationFlowNamesBean =
+	 * migrationFlowNamesBean; }
+	 */
 
-	public MigrationFlowNamesBean getMigrationFlowNamesBean() {
-		return migrationFlowNamesBean;
-	}
-
-	public void setMigrationFlowNamesBean(
-			MigrationFlowNamesBean migrationFlowNamesBean) {
-		this.migrationFlowNamesBean = migrationFlowNamesBean;
-	}*/
-
-	/*public int getMigrateid() {
-		return migrateid;
-	}
-
-	public void setMigrateid(int migrateid) {
-		this.migrateid = migrateid;
-	}*/
+	/*
+	 * public int getMigrateid() { return migrateid; }
+	 * 
+	 * public void setMigrateid(int migrateid) { this.migrateid = migrateid; }
+	 */
 
 	public String getInstanceid() {
 		return instanceid;
@@ -70,15 +74,13 @@ public class MigrationFlowBean implements Serializable {
 	public void setAppreq(String appreq) {
 		this.appreq = appreq;
 	}
-/*
-	public String getMigrationFlowName() {
-		return migrationFlowName;
-	}
 
-	public void setMigrationFlowName(String migrationFlowName) {
-		this.migrationFlowName = migrationFlowName;
-	}
-*/
+	/*
+	 * public String getMigrationFlowName() { return migrationFlowName; }
+	 * 
+	 * public void setMigrationFlowName(String migrationFlowName) {
+	 * this.migrationFlowName = migrationFlowName; }
+	 */
 	public String getMigrationflow() {
 		return migrationflow;
 	}
@@ -95,7 +97,6 @@ public class MigrationFlowBean implements Serializable {
 		this.migrationflow = migrationflow;
 	}
 
-	
 	public String getUserid() {
 		return userid;
 	}
@@ -112,7 +113,4 @@ public class MigrationFlowBean implements Serializable {
 		this.lastupdatetime = lastupdatetime;
 	}
 
-
-	private String userid;
-	private String lastupdatetime;
 }
