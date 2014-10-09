@@ -1,10 +1,13 @@
 package com.avalon.ftp.beans.user;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class PrivilegeBean {
 	
 
     private int privilegeId;    
     
+    @NotEmpty(message="Privilege Name  is required")
     private String name;    
 
     

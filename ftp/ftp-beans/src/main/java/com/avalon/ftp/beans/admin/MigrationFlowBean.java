@@ -15,7 +15,7 @@ public class MigrationFlowBean implements Serializable {
 	private String instanceid;
 	@NotEmpty(message="enter sequence name")
 	private String sequence;
-	@NotEmpty(message="enter approval request ")
+	@NotEmpty(message="enter approval request")
 	private String appreq;
 
 	/* private String migrationFlowName; */

@@ -204,5 +204,20 @@ public class ApprovalRepositoryImpl implements ApprovalRepository {
 	}
 
 	
+	@SuppressWarnings("unchecked")
+	@Transactional(propagation = Propagation.REQUIRED)
+	public String getCPName(String appid) {
+		// TODO Auto-generated method stub
+		logger.info("@Entered into getCPName() ");
+		Criteria cr	= sessionFactory.getCurrentSession().createCriteria(ApprovalRequest.class);	
+		cr.add(Restrictions.eq("id",appid));	
+		logger.info("-=-=-=-=-=1");
+		List<ApprovalRequest> result=cr.list();
+		logger.info("-=-=-=-=-=-2");
+		logger.info("Env  Id  control file name "+result.get(0).getCntrlfilename());	
+		return result.get(0).getCntrlfilename();
+	}
+
+	
 	
 }

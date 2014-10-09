@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.avalon.ftp.entities.meta.GroupMetaEntity;
 import com.avalon.ftp.entities.meta.MigrationFlowMetaEntity;
+import com.avalon.ftp.entities.user.Rolerprivilege;
 
 @Repository("groupMetaRepository")
 public class GroupMetaRepositoryImpl implements GroupMetaRepository {
@@ -41,11 +42,22 @@ public class GroupMetaRepositoryImpl implements GroupMetaRepository {
 	}
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.REQUIRED)
+	public List<GroupMetaEntity> searchGroupValues(String groupName) {
+		// TODO Auto-generated method stub
+		logger.info("@@GroupMetaRepositoryImpl..searchGroupValues()... executing createCriteria()");		
+		//return sessionFactory.getCurrentSession().createCriteria(GroupMetaEntity.class).list();
+			return  (List<GroupMetaEntity>) sessionFactory.getCurrentSession().createCriteria(GroupMetaEntity.class).add(Restrictions.eq("groupName",groupName)).list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional(propagation = Propagation.REQUIRED)
 	public List<GroupMetaEntity> searchGroupValues() {
 		// TODO Auto-generated method stub
-		logger.info("@@GroupMetaRepositoryImpl..searchGroupValues()... executing createCriteria()");
-		return sessionFactory.getCurrentSession().createCriteria(GroupMetaEntity.class).list();
+		logger.info("@@GroupMetaRepositoryImpl..searchGroupValues()... executing createCriteria()");		
+		//return sessionFactory.getCurrentSession().createCriteria(GroupMetaEntity.class).list();
+			return sessionFactory.getCurrentSession().createCriteria(GroupMetaEntity.class).list();
 	}
+	
 	@Transactional(propagation = Propagation.REQUIRED)
 	public GroupMetaEntity editGroupValueByID(long groupMetaId) {
 		// TODO Auto-generated method stub

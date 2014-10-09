@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.avalon.ftp.beans.exception.CustomExceptionMsg;
 import com.avalon.ftp.beans.meta.GroupMetaBean;
 import com.avalon.ftp.services.meta.GroupMetaService;
 
@@ -48,25 +49,26 @@ public class GroupValuesMetaController {
 		modelMap.addAttribute("groupMetaBean", new GroupMetaBean());
 		return "AddNewGroupvalues";
 	}
+	
 	@RequestMapping(value = "/SearchGroupValues", method = RequestMethod.POST)
-	public String searchGroupValues(HttpServletRequest request,@ModelAttribute("groupMetaBean")GroupMetaBean groupMetaBean,ModelMap modelMap) {
+	public String searchGroupValues(HttpServletRequest request,@RequestParam("groupName") String groupName,@ModelAttribute("groupMetaBean")GroupMetaBean groupMetaBean,ModelMap modelMap) throws NullPointerException{
 		logger.info("@GroupValuesMetaController .. searchMigrationFlow()..");
-		
-		List<GroupMetaBean> groupMetaBeans=groupMetaService.searchGroupValues();
+		if(true)
+			 throw new CustomExceptionMsg("E969","Custom Error");
+		List<GroupMetaBean> groupMetaBeans=groupMetaService.searchGroupValues(groupName);
 		modelMap.addAttribute("groupMetaBeans", groupMetaBeans);
 		return "SearchGroupValues";
 
 	}
+	
 	@RequestMapping(value = "/editGroupValue", method = RequestMethod.GET)
 	public String editGroupValues(HttpServletRequest request,@RequestParam("groupMetaId")long groupMetaId ,ModelMap modelMap) {
 		logger.info("@GroupValuesMetaController .. searchMigrationFlow()..");
 		
 		GroupMetaBean groupMetaBean=groupMetaService.editGroupValueByID(groupMetaId);
 		modelMap.addAttribute("groupMetaBean", groupMetaBean);
-		modelMap.addAttribute("groupMetaBeanID", "The Record with ID NO:-"+groupMetaBean.getGroupMetaId()+"-edited..");
-		
-		return "AddNewGroupvalues";
-
+		modelMap.addAttribute("groupMetaBeanID", "The Record with ID NO:-"+groupMetaBean.getGroupMetaId()+"-edited..");		
+		return "AddNewGroupvalues"; 
 	}
 
 	@RequestMapping(value="/updateGroupValues",method=RequestMethod.POST)

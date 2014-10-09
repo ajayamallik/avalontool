@@ -2,12 +2,13 @@ package com.avalon.ftp.web.controllers.execution;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileSystemView;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,17 +54,13 @@ public class ExecuteRequestController {
 		logger.info(selectedValuesforExecution+" @Entered into executeRequestsSelected controller");
 		
 		String[] idAndapprovalid = null;
-		String[] parts = selectedValuesforExecution.split(",");
-		
-				
+		String[] parts = selectedValuesforExecution.split(",");				
 		
 		for(int i = 0; i<parts.length; i++){
 			idAndapprovalid = parts[i].split("-");
 			//getting migration flow name from approval POJO
-			// id -approvalid - objecttype - path
-			
-			List<ApprovalBean> migrationFlow = approvalService.getMigratioFlow(idAndapprovalid[1]);
-		
+			// id -approvalid - objecttype - path - filename - appshortname		
+			List<ApprovalBean> migrationFlow = approvalService.getMigratioFlow(idAndapprovalid[1]);		
 			// based on migration flow name , getting INSTANCE ID AND SEQUENCE etc...
 			MigrationFlowBean instanceId = approvalService.getInstanceId(migrationFlow.get(0).getMigrationflow());
 		
@@ -76,7 +73,7 @@ public class ExecuteRequestController {
 			logger.info("-=-=-=-=-=-="+idAndapprovalid[2]);
 			
 			 //to create directories in server.
-			String[] dirnames = idAndapprovalid[2].split(" ");
+			String[] dirnames = idAndapprovalid[2].split(" ");  //idAndapprovalid[2] is Object Type
 			String dirname = dirnames[0] +dirnames[1];
 			logger.info("-=-=-=-= _"+dirname);
 			
@@ -84,7 +81,7 @@ public class ExecuteRequestController {
 				if(idAndapprovalid[2].trim().equals("Oracle Forms".trim())){
 					try{
 						//Conversion String To File Type 
-						File file = new File("C:/Users/Avlon/Desktop/"+idAndapprovalid[3]);	
+						File file = new File("C:/Users/Avlon/Desktop/"+idAndapprovalid[3]);	 //path - giving file from File dialog box 
 						logger.info("-=-=-=-path=-=-=-=-=-="+file.getAbsolutePath()); //gets complete path with file name
 						logger.info("-=-=-=-=name-=-=-=-=-=-="+file.getName());  // gets file name with extension only
 						logger.info("-=-=-=-=-size=-=-=-=-=-=-="+file.length()); // file size
@@ -138,6 +135,7 @@ public class ExecuteRequestController {
 	            channel.connect();
 	            logger.info("-=-=-1-=-=");
 	            channelSftp = (ChannelSftp)channel;
+	            //To do : Replace with argument "dirname" 
 	            //channelSftp.mkdir(SFTPWORKINGDIR);
 	            channelSftp.cd(SFTPWORKINGDIR);
 	            logger.info("-=-=-1-=-=");
@@ -173,7 +171,7 @@ public class ExecuteRequestController {
 		logger.info("Env Details in controller  host  "+envDetails.getHost());	
 		logger.info("Env Details in controller  Port"+envDetails.getPort());
 		logger.info("Env Details in controller  Sid"+envDetails.getSid());
-		logger.info("Env Details in controller  instance Name"+envDetails.getInstancename());			
+		logger.info("Env Details in controller  instance Name"+envDetails.getInstancename());	
 			
 			String host = envDetails.getHost();
 			int port = Integer.parseInt(envDetails.getPort());
@@ -187,7 +185,9 @@ public class ExecuteRequestController {
 			logger.info(" ldt Name "+ldt_fineName);
 			String user="applmgr";
 	        String password="applmgr";
-	        
+	        logger.info("approval id are "+idAndapprovalid[0] +" "+idAndapprovalid[1]);
+	        CPname = approvalService.getCPName(idAndapprovalid[0]);
+	       // logger.info("CP Name is "+CPname1 );
 	        try{
 	             
 	            java.util.Properties config = new java.util.Properties(); 
@@ -203,8 +203,8 @@ public class ExecuteRequestController {
 	            //Arguments can pass to .sh file by concate with setCommand argument and 
 	            // use by $ in .sh file. 
 	            //String param = "afcpprog.lct";
-	            String param = "Ajaya1.lct";
-	            String param1 = "afcpprog.lct";
+	            //String param = "Ajaya1.lct";
+	            //String param1 = "afcpprog.lct";
 	            
 	           // System.out.println("-=-=repoShortName-=-"+repoShortName);
 	            //((ChannelExec)channel).setCommand("./setting_enviranment.sh");
@@ -242,12 +242,42 @@ public class ExecuteRequestController {
 	        
 			
 			
-			 //to create directories in server.
+			 //to create directories in local system.
 			String[] dirnames = idAndapprovalid[2].split(" ");
 			String dirname = dirnames[0] +dirnames[1];
+			
+			//getting directory names from system
+			File[] paths;
+			FileSystemView fsv = FileSystemView.getFileSystemView();
 
+			// returns pathnames for files and directory
+			paths = File.listRoots();
+			String DriveName;
+			// for each pathname in pathname array
+			for(File path:paths)
+			{
+			    //  prints file and directory paths
+			    System.out.println("Drive Name: "+path);
+			    System.out.println("Description: "+fsv.getSystemTypeDescription(path));
+			    
+			    if(fsv.getSystemTypeDescription(path).equals("Local Disk")){			    	
+			    	try{
+			    		// Converting File type to String Type
+			    		DriveName = FileUtils.readFileToString(path).substring(0,2);
+			    		System.out.println("-=-=-=-=Drive Name -=-=-=-="+DriveName);
+			        	}catch(IOException e){
+			        			e.printStackTrace();
+			        	}   
+			    	
+			    }
+			    	
+			}
+
+			//end getting directories
 			
 			File files = new File("D:\\FND\\DOWNLOAD\\"+serverName);
+			// Can Replace  DriveName
+			//File files = new File(DriveName+"\\FND\\DOWNLOAD\\"+serverName);
 			
 			if (files.exists()) {
 				if (files.mkdirs()) {
@@ -327,7 +357,40 @@ public class ExecuteRequestController {
 				    //session.connect();
 				    channelSftp = (ChannelSftp) session.openChannel("sftp");
 				    channelSftp.connect();
+				  //getting directory names from system
+					File[] paths;
+					FileSystemView fsv = FileSystemView.getFileSystemView();
+
+					// returns pathnames for files and directory
+					paths = File.listRoots();
+					String DriveName = null;
+					// for each pathname in pathname array
+					for(File path:paths)
+					{
+					    //  prints file and directory paths
+					    System.out.println("Drive Name: "+path);
+					    System.out.println("Description: "+fsv.getSystemTypeDescription(path));
+					    
+					    if(fsv.getSystemTypeDescription(path).equals("Local Disk")){			    	
+					    	try{
+					    		// Converting File type to String Type
+					    		DriveName = FileUtils.readFileToString(path).substring(0,2);
+					    		System.out.println("-=-=-=-=Drive Name -=-=-=-="+DriveName);
+					        	}catch(IOException e){
+					        			e.printStackTrace();
+					        	}   
+					    	
+					    }
+					    	
+					}
+
+					//end getting directories	
+				    
+				    //copying file from server '/home/applmgr/' to local path. 
+				    //'D:/FND/DOWNLOAD/' needs to change with 'localpath'argument in function call.
 				    channelSftp.get("/home/applmgr/"+remotePath, "D:/FND/DOWNLOAD/"+instanceName+"/"+remotePath);
+				    //Replace above statement with below statement to replace drive D: with dynamic value
+				    //channelSftp.get("/home/applmgr/"+remotePath, DriveName+"/FND/DOWNLOAD/"+instanceName+"/"+remotePath);
 				  } catch (JSchException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
@@ -369,16 +432,21 @@ public class ExecuteRequestController {
 				String host = envDetails.getHost();
 				int port = Integer.parseInt(envDetails.getPort());
 				String sid = envDetails.getSid();
+				//localserver should change with server name which is in argument.
+				//remove comments for second statements.
 				String ldt_fineName = "D:/FND/DOWNLOAD/localserver/"+idAndapprovalid[4]+".ldt";
+				//String ldt_fineName = "D:/FND/DOWNLOAD/"+serverName+"/"+idAndapprovalid[4]+".ldt";
+				//ToDo : copy this file to serve lovation '/home/applmgr/'
 				String ldtfile = idAndapprovalid[4]+".ldt";
 				String shrtName = idAndapprovalid[5];
-				String CPname = "EMPLOYEE_INFORMATION";  //concurrent program Name. 
-				
+				String CPname = "EMPLOYEE_INFORMATION";  //concurrent program Name.  Not required for upload
+									
 				
 				String user="applmgr";
 		        String password="applmgr";
 		        String serverPath = "/home/applmgr/";
 		        //moving .ldt file to server location
+		        // to do : based on object type... call method to store ldt file name
 		        execute_Oracle_Forms( ldt_fineName, serverPath);
 		        
 		        try{
@@ -393,12 +461,7 @@ public class ExecuteRequestController {
 		            logger.info("Connected");
 		            //String download="FNDLOAD apps/apps 0 Y DOWNLOAD '/oraAS/oracle/VIS/apps/apps_st/appl/fnd/12.0.0/patch/115/import/afcpprog.lct' tipupathi.ldt PROGRAM CONCURRENT_PROGRAM_NAME='XX_PREPAYMENT_RESULT_REPORT' APPLICATION_SHORT_NAME='SQLAP'";  
 		            Channel channel=session.openChannel("exec");
-		            //Arguments can pass to .sh file by concate with setCommand argument and 
-		            // use by $ in .sh file. 
-		            //String param = "afcpprog.lct";
-		            //String param = "Ajaya1.lct";	            
 		            
-		           // System.out.println("-=-=repoShortName-=-"+repoShortName);
 		            //((ChannelExec)channel).setCommand("./setting_enviranment.sh");
 		           // ((ChannelExec)channel).setCommand("./setting_enviranment.sh "+" "+ldt_fineName+" "+CPname+" "+shrtName);
 		            
@@ -418,7 +481,7 @@ public class ExecuteRequestController {
 		              }
 		              if(channel.isClosed()){
 		                logger.info("exit-status: "+channel.getExitStatus());
-		                if(channel.getExitStatus() == 1){
+		                if(channel.getExitStatus() == 0){
 		                	int runstat = approvalService.changeApprovalStatusToRun(idAndapprovalid[0]);
 		                	logger.info("-=-=Running Status "+idAndapprovalid[0]); }
 		                	break;

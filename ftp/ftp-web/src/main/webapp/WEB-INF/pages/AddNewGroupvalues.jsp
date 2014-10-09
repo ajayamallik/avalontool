@@ -216,16 +216,10 @@
 										<label id="jgroup" for="j_group">Enter GroupValues</label>
 									</div>
 									<div class="frmvaluee">
-										<form:input path="groupName" id="groupName" />
+										<form:input path="groupName" id="groupName" name="groupName"/>
 										<form:errors path="groupName" class="required_sign" />
 									</div>
-
-
 								</div>
-
-
-								
-
 									<div class="row"></div>
 
 									<br>

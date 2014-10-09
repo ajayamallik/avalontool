@@ -27,6 +27,7 @@ public interface ApprovalService {
 	public String getInstanceNames(String id);
 	public EnvironmentBean getEnvDetailsByInstanceName(String string);
 	public String getRequestType(String appid);
+	public String getCPName(String appid);
 
 
 }

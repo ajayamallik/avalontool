@@ -179,7 +179,9 @@
 												itemValue="migrationflowname" itemLabel="migrationflowname" />
 												
 										</form:select>
-
+										
+										<form:errors path="migrationflowname"></form:errors>
+										
 									</div>
 
 									<div class="frmlabel">
@@ -187,9 +189,8 @@
 									</div>
 									<div class="frmvaluee">
 										<form:input path="sequence" id="sequence" />
-
 									</div>
-
+<form:errors path="sequence"></form:errors>
 
 								</div>
 
@@ -203,7 +204,7 @@
 									</div>
 									<div class="frmvaluee">
 										<form:input path="instanceid" id="instanceid" />
-
+<form:errors path="instanceid"></form:errors>
 									</div>
 
 									<div class="frmlabel">
@@ -211,7 +212,7 @@
 									</div>
 									<div class="frmvaluee">
 										<form:input path="appreq" id="appreq" />
-
+<form:errors path="appreq"></form:errors>
 									</div>
 
 

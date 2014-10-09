@@ -276,4 +276,9 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return approvalRepository.getRequestType(appId);
 	}
 
+	public String getCPName(String appid) {
+		// TODO Auto-generated method stub
+		return approvalRepository.getCPName(appid);
+	}
+
 }

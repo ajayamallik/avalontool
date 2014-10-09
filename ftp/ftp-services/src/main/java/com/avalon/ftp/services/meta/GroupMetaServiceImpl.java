@@ -40,6 +40,18 @@ public class GroupMetaServiceImpl implements GroupMetaService {
 		
 	}
 	@Transactional(propagation = Propagation.REQUIRED)
+	public List<GroupMetaBean> searchGroupValues(String groupName) {
+		// TODO Auto-generated method stub
+		logger.info("@GroupMetaServiceImpl  searchGroupValues()...");
+		List<GroupMetaEntity> groupMetaEntityList=new ArrayList<GroupMetaEntity>();
+		List<GroupMetaBean> groupMetaBeansList=new ArrayList<GroupMetaBean>();
+		groupMetaEntityList= groupMetaRepository.searchGroupValues(groupName);
+		logger.info("calling createGroupMetaBeans(groupMetaEntityList)...");
+		groupMetaBeansList=createGroupMetaBeans(groupMetaEntityList);
+		return groupMetaBeansList;
+	}
+	//Method to get all values if no argument passed
+	@Transactional(propagation = Propagation.REQUIRED)
 	public List<GroupMetaBean> searchGroupValues() {
 		// TODO Auto-generated method stub
 		logger.info("@GroupMetaServiceImpl  searchGroupValues()...");
@@ -50,6 +62,8 @@ public class GroupMetaServiceImpl implements GroupMetaService {
 		groupMetaBeansList=createGroupMetaBeans(groupMetaEntityList);
 		return groupMetaBeansList;
 	}
+	
+	
 	//creating List of metaBeansList from List of GroupMetaEntity
 	public List<GroupMetaBean> createGroupMetaBeans(List<GroupMetaEntity> groupMetaEntities){
 		logger.info("@GroupMetaSevice.. enteed into createGroupMetaBeans()");

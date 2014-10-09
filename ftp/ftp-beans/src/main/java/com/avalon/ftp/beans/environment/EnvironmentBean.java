@@ -2,6 +2,8 @@ package com.avalon.ftp.beans.environment;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class EnvironmentBean implements Serializable {
 	
 	/**
@@ -62,12 +64,20 @@ public class EnvironmentBean implements Serializable {
 	public void setLastupdatetime(String lastupdatetime) {
 		this.lastupdatetime = lastupdatetime;
 	}
+	
+	@NotEmpty(message="Instance id is required")
 	private String instancename;
+	@NotEmpty(message="Instance id is required")
 	private String host;
+	@NotEmpty(message="Instance id is required")
 	private String port;
+	@NotEmpty(message="Instance id is required")
 	private String sid;
+	
 	private String status;
+	@NotEmpty(message="Instance id is required")
 	private String instanceid;
+	@NotEmpty(message="Instance id is required")
 	private String userid;
 	private String lastupdatetime;
 

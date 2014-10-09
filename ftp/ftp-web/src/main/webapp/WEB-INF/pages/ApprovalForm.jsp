@@ -1060,13 +1060,11 @@ function add(type,name,i) {
 	                    <br><br>
 	               <br><br>
 	            
-	             
 	            
-	            
-	            <div class="row">                                   
+	            <!-- <div class="row">                                   
 	                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' id='address' value='Lines' class='button' onClick=''/>                  
 	                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value='Deploy' class='button'/>
-	              </div>
+	              </div> -->
 	
 	             
 	              <div class="row">
@@ -1106,7 +1104,7 @@ function add(type,name,i) {
 	                                   
 	                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id='approval' value='Submit for Approval' class="button" />
 	                  
-	                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value='Save' class="button"/>
+	                 <!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value='Save' class="button"/> -->
 	               
 	           </div>
 	           <br>

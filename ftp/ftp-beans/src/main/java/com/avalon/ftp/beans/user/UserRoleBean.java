@@ -1,11 +1,15 @@
 package com.avalon.ftp.beans.user;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 	public class UserRoleBean {
 		
 	
 		private int role_id;
 		private String description;
+		
+		@NotEmpty(message="Role  is required")
 		private String role;		
 		private String userid;
 		

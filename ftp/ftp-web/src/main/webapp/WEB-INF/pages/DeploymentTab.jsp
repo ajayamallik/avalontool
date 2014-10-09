@@ -158,17 +158,13 @@
 									</div>
 								</div> <br>
 							<br>
-
-
-
 								<div class="row">
-
-
 									<div class="frmlabel">
 										<label id="jinstancename" for="j_instancename">InstanceName</label>
 									</div>
 									<div class="frmvaluee">
 										<form:input path="instancename" id="instancename" />
+										<form:errors path="instancename"></form:errors>
 
 									</div>
 
@@ -177,6 +173,7 @@
 									</div>
 									<div class="frmvaluee">
 										<form:input path="host" id="host" />
+										<form:errors path="host"></form:errors>
 
 									</div>
 
@@ -192,6 +189,7 @@
 									</div>
 									<div class="frmvaluee">
 										<form:input path="port" id="port" />
+										<form:errors path="port"></form:errors>
 
 									</div>
 
@@ -200,6 +198,7 @@
 									</div>
 									<div class="frmvaluee">
 										<form:input path="sid" id="sid" />
+										<form:errors path="sid"></form:errors>
 
 									</div>
 
@@ -212,6 +211,7 @@
 										</div>
 										<div class="frmvaluee">
 											<form:input path="status" id="status" />
+											<form:errors path="status"></form:errors>
 
 										</div>
 
@@ -221,6 +221,7 @@
 										</div>
 										<div class="frmvaluee">
 											<form:input path="instanceid" id="instanceid" />
+											<form:errors path="instanceid"></form:errors>
 
 										</div>
 

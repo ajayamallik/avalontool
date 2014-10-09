@@ -2,6 +2,9 @@ package com.avalon.ftp.beans.admin;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class DeploymentBean implements Serializable {
@@ -13,16 +16,23 @@ public class DeploymentBean implements Serializable {
 	
 	
 	private long environmentid;
-	@NotEmpty
+	@Pattern(regexp = "^[a-zA-Z]+", message = "Please Enter Characters")
+	@Size(max = 40, message = "Please Enter 40 Numbers Only")
 	private String instancename;
-	@NotEmpty
+	
+	@Pattern(regexp = "[0-9]\\d*", message = "Please Enter Numerics")
+	@Size(max = 12, message = "Please Enter 12 Numbers Only")
 	private String port;
-	@NotEmpty
+	
+	@Pattern(regexp = "[0-9]\\d*", message = "Please  xxx.xxx.xxx.xxx format")
 	private String host;
+	
 	@NotEmpty
 	private String sid;
+	
 	@NotEmpty
 	private String status;
+	
 	@NotEmpty
 	private String instanceid;
 

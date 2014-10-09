@@ -110,6 +110,7 @@ public class ApprovalController {
 		
 		
 		modelMap.addAttribute("approvalBean", new Approval());
+		logger.info("-=-=-=-24/9=-=-=-=");
 		return "ApprovalForm";
 
 	}

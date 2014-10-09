@@ -11,10 +11,12 @@ import com.avalon.ftp.entities.meta.GroupMetaEntity;
 public interface GroupMetaService {
 	public List<GroupMetaEntity> getGroupMetaNames();
 	public long addNewGroupValues(GroupMetaBean groupMetaBean);
+	public List<GroupMetaBean> searchGroupValues(String groupName);
 	public List<GroupMetaBean> searchGroupValues();
 	public GroupMetaBean editGroupValueByID(long groupMetaId);
 	public GroupMetaEntity getGroupValueById(long groupMetaId) ;
 	public void updateGroupValue(GroupMetaBean groupMetaBean);
 	public void deleteGroupValueByID(long groupMetaId);
+	
 
 }

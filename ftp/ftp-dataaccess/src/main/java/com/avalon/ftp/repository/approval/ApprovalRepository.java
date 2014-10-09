@@ -25,6 +25,6 @@ public interface ApprovalRepository {
 	public  List<Approval> getInstanceNames(String id);
 	public EnvironmentEntity getEnvDetailsByInstanceName(String instaName);
 	public String getRequestType(String appId);
-
+	public String getCPName(String appid);
 
 }

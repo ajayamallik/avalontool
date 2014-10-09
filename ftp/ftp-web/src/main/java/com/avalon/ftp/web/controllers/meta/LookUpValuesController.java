@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.avalon.ftp.beans.meta.LookUpValuesBean;
 import com.avalon.ftp.services.meta.LookUpValuesService;
+import com.avalon.ftp.web.controllers.CustomException.CustomExceptionController;
 
 @Controller
 public class LookUpValuesController {
@@ -22,8 +23,9 @@ public class LookUpValuesController {
 	LookUpValuesService lookUpValuesService;
 
 	@RequestMapping(value="/configtab",method=RequestMethod.POST)
-	public String getLookUpValuesListForm(@ModelAttribute("lookUpValuesBean") LookUpValuesBean lookUpValuesBean,ModelMap modelMap){
+	public String getLookUpValuesListForm(@ModelAttribute("lookUpValuesBean") LookUpValuesBean lookUpValuesBean,ModelMap modelMap) throws NullPointerException{
 		logger.info("@LookUpValuesController Enterd into getLookUpValuesListForm()..");
+		
 		List<LookUpValuesBean> lookUpValuesBeans= lookUpValuesService.getLookUpValues();
 		modelMap.addAttribute("lookUpValuesBeans", lookUpValuesBeans);
 		
